@@ -86,15 +86,15 @@ function mostrarModalPago(producto, opcion) {
         💵 Efectivo
       </button>
       <button onclick="procesarVenta('${producto.nombre}', '${opcion.tamaño}', ${opcion.precio}, 'yape')"
-              style="background: linear-gradient(135deg, #f3e8ff, #e9d5ff); color: #7c3aed; border: 2px solid #c084fc; padding: 1rem; border-radius: 15px; font-size: 0.9rem; cursor: pointer; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(124, 58, 237, 0.1);"
-              onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(124, 58, 237, 0.2)'"
-              onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(124, 58, 237, 0.1)'">
+              style="background: linear-gradient(135deg, #f3e8ff, #e9d5ff); color: #be185d; border: 2px solid #c084fc; padding: 1rem; border-radius: 15px; font-size: 0.9rem; cursor: pointer; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(190, 24, 93, 0.1);"
+              onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(190, 24, 93, 0.2)'"
+              onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(190, 24, 93, 0.1)'">
         📱 Yape
       </button>
       <button onclick="procesarVenta('${producto.nombre}', '${opcion.tamaño}', ${opcion.precio}, 'tarjeta')"
-              style="background: linear-gradient(135deg, #fef3c7, #fde68a); color: #d97706; border: 2px solid #fbbf24; padding: 1rem; border-radius: 15px; font-size: 0.9rem; cursor: pointer; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(217, 119, 6, 0.1);"
-              onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(217, 119, 6, 0.2)'"
-              onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(217, 119, 6, 0.1)'">
+              style="background: linear-gradient(135deg, #fef3c7, #fde68a); color: #be185d; border: 2px solid #fbbf24; padding: 1rem; border-radius: 15px; font-size: 0.9rem; cursor: pointer; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(190, 24, 93, 0.1);"
+              onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(190, 24, 93, 0.2)'"
+              onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(190, 24, 93, 0.1)'">
         💳 Tarjeta
       </button>
     </div>
@@ -135,7 +135,7 @@ function mostrarModalPago(producto, opcion) {
         <h3 style="color: #be185d; margin-bottom: 1rem;">¡Venta Registrada!</h3>
         <div style="background: linear-gradient(135deg, #fdf2f8, #fce7f3); border: 2px solid #f9a8d4; padding: 1.5rem; border-radius: 15px; margin-bottom: 1.5rem; box-shadow: 0 4px 15px rgba(190, 24, 93, 0.1);">
           <p style="color: #be185d; font-weight: 600; margin-bottom: 0.5rem;"><strong>${nombreProducto}</strong> - ${tamaño}</p>
-          <p style="color: #9d174d; margin-bottom: 0.5rem;">Método: ${metodoNormalizado.charAt(0).toUpperCase() + metodoNormalizado.slice(1)}</p>
+          <p style="color: #be185d; margin-bottom: 0.5rem;">Método: ${metodoNormalizado.charAt(0).toUpperCase() + metodoNormalizado.slice(1)}</p>
           <p style="font-size: 1.3rem; color: #be185d; font-weight: bold;"><strong>S/. ${precio.toFixed(2)}</strong></p>
         </div>
         <button onclick="cerrarModal()"

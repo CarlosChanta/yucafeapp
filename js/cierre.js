@@ -38,29 +38,29 @@ document.addEventListener("DOMContentLoaded", () => {
       <div style="background: linear-gradient(135deg, #fdf2f8, #fce7f3); padding: 1.5rem; border-radius: 15px; text-align: center; border: 2px solid #f9a8d4; box-shadow: 0 4px 15px rgba(190, 24, 93, 0.1);">
         <div style="font-size: 1.8rem; margin-bottom: 0.8rem;">💵</div>
         <p style="color: #be185d; font-weight: 600; margin-bottom: 0.5rem;">Efectivo</p>
-        <p style="font-size: 1.3rem; font-weight: bold; color: #9d174d;">S/. ${totalEfectivo.toFixed(2)}</p>
-        <p style="font-size: 0.9rem; color: #831843;">${conteoMetodos.efectivo} transacciones</p>
+        <p style="font-size: 1.3rem; font-weight: bold; color: #be185d;">S/. ${totalEfectivo.toFixed(2)}</p>
+        <p style="font-size: 0.9rem; color: #be185d;">${conteoMetodos.efectivo} transacciones</p>
       </div>
 
       <div style="background: linear-gradient(135deg, #fdf2f8, #fce7f3); padding: 1.5rem; border-radius: 15px; text-align: center; border: 2px solid #c084fc; box-shadow: 0 4px 15px rgba(124, 58, 237, 0.1);">
         <div style="font-size: 1.8rem; margin-bottom: 0.8rem;">📱</div>
-        <p style="color: #7c3aed; font-weight: 600; margin-bottom: 0.5rem;">Yape</p>
-        <p style="font-size: 1.3rem; font-weight: bold; color: #6d28d9;">S/. ${totalYape.toFixed(2)}</p>
-        <p style="font-size: 0.9rem; color: #831843;">${conteoMetodos.yape} transacciones</p>
+        <p style="color: #be185d; font-weight: 600; margin-bottom: 0.5rem;">Yape</p>
+        <p style="font-size: 1.3rem; font-weight: bold; color: #be185d;">S/. ${totalYape.toFixed(2)}</p>
+        <p style="font-size: 0.9rem; color: #be185d;">${conteoMetodos.yape} transacciones</p>
       </div>
 
       <div style="background: linear-gradient(135deg, #fdf2f8, #fce7f3); padding: 1.5rem; border-radius: 15px; text-align: center; border: 2px solid #fbbf24; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.1);">
         <div style="font-size: 1.8rem; margin-bottom: 0.8rem;">💳</div>
-        <p style="color: #d97706; font-weight: 600; margin-bottom: 0.5rem;">Tarjeta</p>
-        <p style="font-size: 1.3rem; font-weight: bold; color: #b45309;">S/. ${totalTarjeta.toFixed(2)}</p>
-        <p style="font-size: 0.9rem; color: #831843;">${conteoMetodos.tarjeta} transacciones</p>
+        <p style="color: #be185d; font-weight: 600; margin-bottom: 0.5rem;">Tarjeta</p>
+        <p style="font-size: 1.3rem; font-weight: bold; color: #be185d;">S/. ${totalTarjeta.toFixed(2)}</p>
+        <p style="font-size: 0.9rem; color: #be185d;">${conteoMetodos.tarjeta} transacciones</p>
       </div>
     </div>
 
     <div style="background: linear-gradient(135deg, #fdf2f8, #fce7f3); padding: 2rem; border-radius: 20px; text-align: center; border: 3px solid #f9a8d4; box-shadow: 0 8px 25px rgba(190, 24, 93, 0.15);">
       <h4 style="color: #be185d; margin-bottom: 0.8rem; font-size: 1.3rem;">💰 Total General del Día</h4>
       <p style="font-size: 2.5rem; font-weight: bold; color: #be185d; margin-bottom: 0.8rem; text-shadow: 2px 2px 4px rgba(190, 24, 93, 0.1);">S/. ${totalGeneral.toFixed(2)}</p>
-      <p style="color: #9d174d; font-size: 1.1rem; font-weight: 500;">✨ Total de ${ventas.length} ventas realizadas</p>
+      <p style="color: #be185d; font-size: 1.1rem; font-weight: 500;">✨ Total de ${ventas.length} ventas realizadas</p>
     </div>
   `;
 
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const mensaje = document.createElement("li");
     mensaje.style.cssText = `
       text-align: center;
-      color: #9d174d;
+      color: #be185d;
       font-style: italic;
       padding: 2rem;
       background: linear-gradient(135deg, #fdf2f8, #fce7f3);
@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         </div>
         <div style="text-align: right;">
-          <div style="font-size: 1.1rem; font-weight: bold; color: ${colorMetodo};">
+          <div style="font-size: 1.1rem; font-weight: bold; color: #be185d;">
             S/. ${validarNumero(v.precio).toFixed(2)}
           </div>
         </div>
