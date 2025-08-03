@@ -1,0 +1,12 @@
+{
+  "name": "yucafeapp",
+  "version": "1.0.0",
+  "description": "App web para registrar ventas y ver la carta de Yu Café",
+  "scripts": {
+    "start": "http-server . -p 3000"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "author": "Carlos Manuel Chanta Capuñay",
+  "license": "MIT"
+}

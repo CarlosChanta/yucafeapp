@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Cierre del Día - Cafetería</title>
+        <link rel="stylesheet" href="css/styles.css" />
+        <script src="js/utils.js"></script>
+        <script src="js/data.js"></script>
+        <script src="js/cierre.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="coffee-decoration">📊</div>
+            <h1>Cierre del Día</h1>
+            <p
+                style="
+                    text-align: center;
+                    font-size: 1.1rem;
+                    color: #9d174d;
+                    margin-bottom: 2rem;
+                "
+            >
+                Resumen de ventas y cierre de caja
+            </p>
+
+            <div
+                id="resumen"
+                style="
+                    background: linear-gradient(135deg, #fefefe, #fdf2f8);
+                    border-radius: 12px;
+                    padding: 1.5rem;
+                    margin-bottom: 2rem;
+                    border-left: 4px solid #f9a8d4;
+                    box-shadow: 0 4px 15px rgba(190, 24, 93, 0.08);
+                "
+            ></div>
+
+            <h3 style="margin-bottom: 1rem">📋 Lista de Ventas</h3>
+            <ul id="lista-ventas"></ul>
+
+            <div style="text-align: center; margin: 2rem 0">
+                <button id="cerrar-caja">🔒 Cerrar Caja</button>
+            </div>
+
+            <div style="text-align: center">
+                <a
+                    href="index.html"
+                    style="
+                        background: linear-gradient(135deg, #f9a8d4, #be185d);
+                        color: white;
+                        padding: 0.8rem 1.5rem;
+                        border-radius: 25px;
+                        text-decoration: none;
+                        font-weight: 600;
+                    "
+                >
+                    ← Volver al Inicio
+                </a>
+            </div>
+        </div>
+    </body>
+</html>
