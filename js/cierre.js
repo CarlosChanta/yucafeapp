@@ -35,32 +35,32 @@ document.addEventListener("DOMContentLoaded", () => {
     </h3>
 
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
-      <div style="background: linear-gradient(135deg, #ecfdf5, #d1fae5); padding: 1rem; border-radius: 10px; text-align: center; border-left: 4px solid #10b981;">
-        <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">💵</div>
-        <p style="color: #059669; font-weight: 600; margin-bottom: 0.3rem;">Efectivo</p>
-        <p style="font-size: 1.2rem; font-weight: bold; color: #047857;">S/. ${totalEfectivo.toFixed(2)}</p>
-        <p style="font-size: 0.9rem; color: #6b7280;">${conteoMetodos.efectivo} transacciones</p>
+      <div style="background: linear-gradient(135deg, #fdf2f8, #fce7f3); padding: 1.5rem; border-radius: 15px; text-align: center; border: 2px solid #f9a8d4; box-shadow: 0 4px 15px rgba(190, 24, 93, 0.1);">
+        <div style="font-size: 1.8rem; margin-bottom: 0.8rem;">💵</div>
+        <p style="color: #be185d; font-weight: 600; margin-bottom: 0.5rem;">Efectivo</p>
+        <p style="font-size: 1.3rem; font-weight: bold; color: #9d174d;">S/. ${totalEfectivo.toFixed(2)}</p>
+        <p style="font-size: 0.9rem; color: #831843;">${conteoMetodos.efectivo} transacciones</p>
       </div>
 
-      <div style="background: linear-gradient(135deg, #f3e8ff, #e9d5ff); padding: 1rem; border-radius: 10px; text-align: center; border-left: 4px solid #8b5cf6;">
-        <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📱</div>
-        <p style="color: #7c3aed; font-weight: 600; margin-bottom: 0.3rem;">Yape</p>
-        <p style="font-size: 1.2rem; font-weight: bold; color: #6d28d9;">S/. ${totalYape.toFixed(2)}</p>
-        <p style="font-size: 0.9rem; color: #6b7280;">${conteoMetodos.yape} transacciones</p>
+      <div style="background: linear-gradient(135deg, #fdf2f8, #fce7f3); padding: 1.5rem; border-radius: 15px; text-align: center; border: 2px solid #c084fc; box-shadow: 0 4px 15px rgba(124, 58, 237, 0.1);">
+        <div style="font-size: 1.8rem; margin-bottom: 0.8rem;">📱</div>
+        <p style="color: #7c3aed; font-weight: 600; margin-bottom: 0.5rem;">Yape</p>
+        <p style="font-size: 1.3rem; font-weight: bold; color: #6d28d9;">S/. ${totalYape.toFixed(2)}</p>
+        <p style="font-size: 0.9rem; color: #831843;">${conteoMetodos.yape} transacciones</p>
       </div>
 
-      <div style="background: linear-gradient(135deg, #fef3c7, #fde68a); padding: 1rem; border-radius: 10px; text-align: center; border-left: 4px solid #f59e0b;">
-        <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">💳</div>
-        <p style="color: #d97706; font-weight: 600; margin-bottom: 0.3rem;">Tarjeta</p>
-        <p style="font-size: 1.2rem; font-weight: bold; color: #b45309;">S/. ${totalTarjeta.toFixed(2)}</p>
-        <p style="font-size: 0.9rem; color: #6b7280;">${conteoMetodos.tarjeta} transacciones</p>
+      <div style="background: linear-gradient(135deg, #fdf2f8, #fce7f3); padding: 1.5rem; border-radius: 15px; text-align: center; border: 2px solid #fbbf24; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.1);">
+        <div style="font-size: 1.8rem; margin-bottom: 0.8rem;">💳</div>
+        <p style="color: #d97706; font-weight: 600; margin-bottom: 0.5rem;">Tarjeta</p>
+        <p style="font-size: 1.3rem; font-weight: bold; color: #b45309;">S/. ${totalTarjeta.toFixed(2)}</p>
+        <p style="font-size: 0.9rem; color: #831843;">${conteoMetodos.tarjeta} transacciones</p>
       </div>
     </div>
 
-    <div style="background: linear-gradient(135deg, #fdf2f8, #fce7f3); padding: 1.5rem; border-radius: 15px; text-align: center; border: 2px solid #f9a8d4;">
-      <h4 style="color: #be185d; margin-bottom: 0.5rem;">💰 Total General</h4>
-      <p style="font-size: 2rem; font-weight: bold; color: #be185d; margin-bottom: 0.5rem;">S/. ${totalGeneral.toFixed(2)}</p>
-      <p style="color: #9d174d;">Total de ${ventas.length} ventas realizadas</p>
+    <div style="background: linear-gradient(135deg, #fdf2f8, #fce7f3); padding: 2rem; border-radius: 20px; text-align: center; border: 3px solid #f9a8d4; box-shadow: 0 8px 25px rgba(190, 24, 93, 0.15);">
+      <h4 style="color: #be185d; margin-bottom: 0.8rem; font-size: 1.3rem;">💰 Total General del Día</h4>
+      <p style="font-size: 2.5rem; font-weight: bold; color: #be185d; margin-bottom: 0.8rem; text-shadow: 2px 2px 4px rgba(190, 24, 93, 0.1);">S/. ${totalGeneral.toFixed(2)}</p>
+      <p style="color: #9d174d; font-size: 1.1rem; font-weight: 500;">✨ Total de ${ventas.length} ventas realizadas</p>
     </div>
   `;
 
@@ -72,14 +72,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const mensaje = document.createElement("li");
     mensaje.style.cssText = `
       text-align: center;
-      color: #6b7280;
+      color: #9d174d;
       font-style: italic;
       padding: 2rem;
-      background: #f9fafb;
-      border-radius: 10px;
-      border: 2px dashed #d1d5db;
+      background: linear-gradient(135deg, #fdf2f8, #fce7f3);
+      border-radius: 15px;
+      border: 2px dashed #f9a8d4;
+      box-shadow: 0 4px 15px rgba(190, 24, 93, 0.05);
     `;
-    mensaje.textContent = "No hay ventas registradas para hoy";
+    mensaje.innerHTML = "🌸 No hay ventas registradas para hoy";
     lista.appendChild(mensaje);
   } else {
     // Ordenar ventas por fecha (más recientes primero)
@@ -91,29 +92,33 @@ document.addEventListener("DOMContentLoaded", () => {
       const li = document.createElement("li");
       const metodoNormalizado = normalizarMetodoPago(v.metodo);
 
-      // Iconos y colores por método de pago
+      // Iconos y colores por método de pago con tema rosa pastel
       let icono = "💵";
-      let colorMetodo = "#10b981";
+      let colorMetodo = "#f9a8d4";
+      let backgroundGradient = "linear-gradient(135deg, #fdf2f8, #fce7f3)";
 
       if (metodoNormalizado === "yape") {
         icono = "📱";
-        colorMetodo = "#8b5cf6";
+        colorMetodo = "#c084fc";
+        backgroundGradient = "linear-gradient(135deg, #fdf2f8, #f3e8ff)";
       } else if (metodoNormalizado === "tarjeta") {
         icono = "💳";
-        colorMetodo = "#f59e0b";
+        colorMetodo = "#fbbf24";
+        backgroundGradient = "linear-gradient(135deg, #fdf2f8, #fef3c7)";
       }
 
       li.style.cssText = `
-        background: linear-gradient(135deg, #fefefe, #fdf2f8);
-        border-radius: 10px;
-        padding: 1rem;
-        margin-bottom: 0.5rem;
-        border-left: 3px solid ${colorMetodo};
-        box-shadow: 0 2px 10px rgba(190, 24, 93, 0.05);
+        background: ${backgroundGradient};
+        border-radius: 15px;
+        padding: 1.2rem;
+        margin-bottom: 0.8rem;
+        border: 2px solid ${colorMetodo};
+        box-shadow: 0 4px 15px rgba(190, 24, 93, 0.08);
         display: flex;
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
+        transition: all 0.3s ease;
       `;
 
       const fecha = new Date(v.fecha);
