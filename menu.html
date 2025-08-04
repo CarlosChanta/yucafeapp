@@ -8,31 +8,234 @@
         <script src="js/data.js"></script>
         <script>
             document.addEventListener("DOMContentLoaded", () => {
-                const contenedor = document.getElementById("menu");
-                carta.forEach((p) => {
-                    const div = document.createElement("div");
-                    div.className = "menu-item";
-                    div.innerHTML =
-                        "<h3>☕ " +
-                        p.nombre +
-                        " <span style='color: #f9a8d4; font-size: 0.9rem; font-weight: normal;'>(" +
-                        p.categoria +
-                        ")</span></h3>";
-                    p.opciones.forEach((o) => {
-                        const pTag = document.createElement("p");
-                        pTag.textContent =
-                            o.tamaño + " - S/. " + o.precio.toFixed(2);
-                        div.appendChild(pTag);
-                    });
-                    contenedor.appendChild(div);
-                });
+                cargarMenuDinamico();
+                cargarFiltros();
             });
+
+            function cargarMenuDinamico() {
+                const contenedor = document.getElementById("menu");
+                const cartaActual = obtenerCarta();
+                const categorias = obtenerCategorias();
+
+                contenedor.innerHTML = ""; // Limpiar contenido
+
+                // Mostrar productos por categoría
+                categorias.forEach((categoria) => {
+                    const productosCategoria = obtenerProductosPorCategoria(categoria);
+
+                    // Crear título de categoría
+                    const tituloCategoria = document.createElement("div");
+                    tituloCategoria.className = "categoria-titulo";
+                    tituloCategoria.style.cssText = `
+                        background: linear-gradient(135deg, #fdf2f8, #fce7f3);
+                        border: 2px solid #f9a8d4;
+                        border-radius: 15px;
+                        padding: 1rem;
+                        margin: 2rem 0 1rem 0;
+                        text-align: center;
+                        box-shadow: 0 4px 15px rgba(190, 24, 93, 0.1);
+                    `;
+
+                    // Usar el icono del primer producto de la categoría, si existe
+                    const iconoCategoria = productosCategoria.length > 0 ? productosCategoria[0].icono : "🌸";
+                    tituloCategoria.innerHTML = `
+                        <h2 style="color: #be185d; margin: 0; font-size: 1.5rem;">
+                            ${iconoCategoria} ${categoria}
+                        </h2>
+                        <p style="color: #be185d; margin: 0.5rem 0 0 0; font-size: 0.9rem;">
+                            ${productosCategoria.length} productos disponibles
+                        </p>
+                    `;
+                    contenedor.appendChild(tituloCategoria);
+
+                    // Crear grid de productos para esta categoría
+                    const gridProductos = document.createElement("div");
+                    gridProductos.style.cssText = `
+                        display: grid;
+                        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                        gap: 1rem;
+                        margin-bottom: 2rem;
+                    `;
+
+                    productosCategoria.forEach((producto) => {
+                        const div = document.createElement("div");
+                        div.className = "menu-item";
+                        div.setAttribute("data-categoria", categoria);
+                        div.setAttribute(
+                            "data-nombre",
+                            producto.nombre.toLowerCase(),
+                        );
+
+                        const icono = producto.icono || iconoCategoria;
+                        div.innerHTML = `
+                            <h3>${icono} ${producto.nombre}
+                                <span style='color: #f9a8d4; font-size: 0.8rem; font-weight: normal;'>
+                                    (${producto.categoria})
+                                </span>
+                            </h3>
+                        `;
+
+                        // Crear contenedor de opciones
+                        const opcionesContainer = document.createElement("div");
+                        opcionesContainer.style.cssText = `
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 0.5rem;
+                            margin-top: 1rem;
+                        `;
+
+                        producto.opciones.forEach((opcion) => {
+                            const pTag = document.createElement("p");
+                            pTag.textContent =
+                                opcion.tamaño +
+                                " - S/. " +
+                                opcion.precio.toFixed(2);
+                            opcionesContainer.appendChild(pTag);
+                        });
+
+                        div.appendChild(opcionesContainer);
+                        gridProductos.appendChild(div);
+                    });
+
+                    contenedor.appendChild(gridProductos);
+                });
+
+                // Mostrar estadísticas
+                mostrarEstadisticasMenu(cartaActual);
+            }
+
+            function cargarFiltros() {
+                const filtrosContainer = document.getElementById("filtros");
+                const categorias = obtenerCategorias();
+
+                filtrosContainer.innerHTML = `
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; justify-content: center;">
+                        <button onclick="filtrarPorCategoria('todas')"
+                                style="background: linear-gradient(135deg, #f9a8d4, #be185d); color: white; border: none; padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer; font-size: 0.9rem;">
+                            🌸 Todas
+                        </button>
+                        ${categorias
+                            .map((cat) => {
+                                const productosCat = obtenerProductosPorCategoria(cat);
+                                const iconoCat = productosCat.length > 0 ? productosCat[0].icono : "🌸";
+                                return `
+                                    <button onclick="filtrarPorCategoria('${cat}')"
+                                            style="background: linear-gradient(135deg, #fce7f3, #f9a8d4); color: #be185d; border: 1px solid #f9a8d4; padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer; font-size: 0.9rem;">
+                                        ${iconoCat} ${cat}
+                                    </button>
+                                `;
+                            })
+                            .join("")}
+                    </div>
+                    <div style="text-align: center; margin-bottom: 1rem;">
+                        <input type="text" id="buscarProducto" placeholder="🔍 Buscar producto..."
+                               style="padding: 0.8rem; border: 2px solid #f9a8d4; border-radius: 25px; width: 300px; max-width: 100%; font-size: 1rem;"
+                               onkeyup="buscarEnMenu(this.value)">
+                    </div>
+                `;
+            }
+
+            function filtrarPorCategoria(categoria) {
+                const productos = document.querySelectorAll(".menu-item");
+                const titulos = document.querySelectorAll(".categoria-titulo");
+
+                if (categoria === "todas") {
+                    productos.forEach((p) => (p.style.display = "block"));
+                    titulos.forEach((t) => (t.style.display = "block"));
+                } else {
+                    productos.forEach((p) => {
+                        if (p.getAttribute("data-categoria") === categoria) {
+                            p.style.display = "block";
+                        } else {
+                            p.style.display = "none";
+                        }
+                    });
+
+                    titulos.forEach((t) => {
+                        const siguienteGrid = t.nextElementSibling;
+                        const productosVisibles =
+                            siguienteGrid.querySelectorAll(
+                                '.menu-item[style*="display: block"], .menu-item:not([style*="display: none"])',
+                            );
+                        if (productosVisibles.length > 0) {
+                            t.style.display = "block";
+                        } else {
+                            t.style.display = "none";
+                        }
+                    });
+                }
+            }
+
+            function buscarEnMenu(termino) {
+                const productos = document.querySelectorAll(".menu-item");
+                const titulos = document.querySelectorAll(".categoria-titulo");
+
+                if (!termino.trim()) {
+                    productos.forEach((p) => (p.style.display = "block"));
+                    titulos.forEach((t) => (t.style.display = "block"));
+                    return;
+                }
+
+                const terminoLower = termino.toLowerCase();
+                productos.forEach((p) => {
+                    const nombre = p.getAttribute("data-nombre");
+                    const categoria = p
+                        .getAttribute("data-categoria")
+                        .toLowerCase();
+
+                    if (
+                        nombre.includes(terminoLower) ||
+                        categoria.includes(terminoLower)
+                    ) {
+                        p.style.display = "block";
+                    } else {
+                        p.style.display = "none";
+                    }
+                });
+
+                // Mostrar/ocultar títulos de categoría según productos visibles
+                titulos.forEach((t) => {
+                    const siguienteGrid = t.nextElementSibling;
+                    const productosVisibles = siguienteGrid.querySelectorAll(
+                        '.menu-item[style*="display: block"], .menu-item:not([style*="display: none"])',
+                    );
+                    if (productosVisibles.length > 0) {
+                        t.style.display = "block";
+                    } else {
+                        t.style.display = "none";
+                    }
+                });
+            }
+
+            function mostrarEstadisticasMenu(carta) {
+                const totalProductos = carta.length;
+                const totalCategorias = obtenerCategorias().length;
+
+                const estadisticas = document.createElement("div");
+                estadisticas.style.cssText = `
+                    background: linear-gradient(135deg, #fdf2f8, #fce7f3);
+                    border: 2px solid #f9a8d4;
+                    border-radius: 15px;
+                    padding: 1rem;
+                    margin-top: 2rem;
+                    text-align: center;
+                    box-shadow: 0 4px 15px rgba(190, 24, 93, 0.1);
+                `;
+
+                estadisticas.innerHTML = `
+                    <p style="color: #be185d; margin: 0; font-weight: 600;">
+                        📊 Total: ${totalProductos} productos en ${totalCategorias} categorías
+                    </p>
+                `;
+
+                document.getElementById("menu").appendChild(estadisticas);
+            }
         </script>
     </head>
     <body>
         <div class="container">
-            <div class="coffee-decoration">☕</div>
-            <h1>Nuestra Carta</h1>
+            <div class="coffee-decoration">🌸</div>
+            <h1>Nuestra Carta Completa</h1>
             <p
                 style="
                     text-align: center;
@@ -46,9 +249,11 @@
                     box-shadow: 0 2px 10px rgba(190, 24, 93, 0.05);
                 "
             >
-                ✨ Descubre todos nuestros deliciosos productos
+                ✨ Explora nuestra amplia variedad de productos organizados por
+                categorías
             </p>
 
+            <div id="filtros"></div>
             <div id="menu"></div>
 
             <div style="text-align: center; margin-top: 2rem">
@@ -58,6 +263,17 @@
                         background: linear-gradient(135deg, #f9a8d4, #be185d);
                         color: white;
                         padding: 0.8rem 1.5rem;
+                        border-radius: 25px;
+                        text-decoration: none;
+                        font-weight: 600;
+                    "
+                >
+                    ← Volver al Inicio
+                </a>
+            </div>
+        </div>
+    </body>
+</html>
                         border-radius: 25px;
                         text-decoration: none;
                         font-weight: 600;
