@@ -242,25 +242,25 @@ const carta = [
     nombre: "Queso",
     categoria: "Panes",
     icono: "🥪",
-    opciones: [{ tamaño: "Completo", precio: 12.0 }],
+    opciones: [{ tamaño: "Completo", precio: 4.60 }],
   },
   {
     nombre: "Queso con cabanossi",
     categoria: "Panes",
     icono: "🥪",
-    opciones: [{ tamaño: "Completo", precio: 10.5 }],
+    opciones: [{ tamaño: "Completo", precio: 4.70 }],
   },
   {
     nombre: "Queso, jamón y orégano",
     categoria: "Panes",
     icono: "🥪",
-    opciones: [{ tamaño: "Completo", precio: 10.5 }],
+    opciones: [{ tamaño: "Completo", precio: 4.80 }],
   },
   {
     nombre: "Aceituna",
     categoria: "Panes",
     icono: "🥪",
-    opciones: [{ tamaño: "Completo", precio: 8.5 }],
+    opciones: [{ tamaño: "Completo", precio: 4.50 }],
   },
 ];
 
